@@ -4,28 +4,29 @@ const sketch = (p) => {
   p.setup = function () {
     //canvasのセットアップ
     const width = 800
-    const height = 200
+    const height = 800
     p.createCanvas(width, height)
     p.background(150)
     p.stroke(100)
     p.fill(200)
     
     //オブジェクトのセットアップ
-    let step = 10
-    let lastx = -800
-    let lasty = -800
-    let y = 50
-    let yNoise = p.random(10)
+    let step = 1
+    let last_x = -800
+    let last_y = -800
+    let y = height/2
+    let angle = 0
     let border_x = 20
     let border_y = 10
     for (let x = border_x; x <= width - border_x; x += step) {
-      y = border_y + p.noise(yNoise) * (height - 2*border_y)
-      if (lastx > -800) {
-        p.line(x, y, lastx, lasty)
+      let rad = p.radians(angle)
+      y = height/2 + p.sin(rad) * (height - 2*border_y)/2
+      if (last_x > -800) {
+        p.line(x, y, last_x, last_y)
       }
-      lastx = x
-      lasty = y
-      yNoise += 0.1
+      last_x = x
+      last_y = y
+      angle++
     }
   }
   p.draw = function () {
