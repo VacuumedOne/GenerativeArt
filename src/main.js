@@ -7,8 +7,8 @@ const sketch = (p) => {
     const height = 1000
     p.createCanvas(width, height)
     p.background(150)
-    p.stroke(50)
-    p.fill(255)
+    p.stroke(100)
+    p.fill(200)
     
     //オブジェクトのセットアップ
     let xStart = Math.floor(Math.random()*10)
@@ -24,7 +24,7 @@ const sketch = (p) => {
     }
   }
   p.draw = function () {
-    p.ellipse(150, 150, 100, 100)
+
   }
 }
 
@@ -34,6 +34,6 @@ function drawPoint(p, x, y, noiseFactor) {
   p.push()
   p.translate(x * noiseFactor * 4, y * noiseFactor * 4)
   let edgeSize = noiseFactor * 26
-  p.rect(0, 0, edgeSize, edgeSize)
+  p.ellipse(0, 0, edgeSize, edgeSize)
   p.pop()
 }
