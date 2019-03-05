@@ -15,12 +15,16 @@ const sketch = (p) => {
     let center_y = height/2
     let step = 1
     let r = 300
-    let rap = 8
-    for (let a = 0; a < 360*rap; a += step) {
-      let x = center_x + r * p.cos(p.radians(a))
-      let y = center_y + r * p.sin(p.radians(a))
-      p.circle(x, y, 2)
-      r -= 0.1
+    let strokeColor = 0
+    p.strokeWeight(4)
+    for (let a = 0; a < 180; a += step) {
+      let x1 = center_x + r * p.cos(p.radians(a))
+      let y1 = center_y + r * p.sin(p.radians(a))
+      let x2 = center_x + r * p.cos(p.radians(a) + p.PI)
+      let y2 = center_y + r * p.sin(p.radians(a) + p.PI)
+      p.stroke(strokeColor, 60)
+      strokeColor = (strokeColor + 2)%254
+      p.line(x1, y1, x2, y2)
     }
   }
   p.draw = function () {
