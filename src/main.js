@@ -11,22 +11,14 @@ const sketch = (p) => {
     p.fill(200)
     
     //オブジェクトのセットアップ
+    let center_x = width/2
+    let center_y = height/2
     let step = 1
-    let last_x = -800
-    let last_y = -800
-    let y = height/2
-    let angle = 0
-    let border_x = 20
-    let border_y = 10
-    for (let x = border_x; x <= width - border_x; x += step) {
-      let rad = p.radians(angle)
-      y = height/2 + (p.pow(p.sin(rad), 3)) * (height - 2*border_y)/2
-      if (last_x > -800) {
-        p.line(x, y, last_x, last_y)
-      }
-      last_x = x
-      last_y = y
-      angle++
+    let r = 300
+    for (let a = 0; a < 360; a += step) {
+      let x = center_x + r * p.cos(p.radians(a))
+      let y = center_y + r * p.sin(p.radians(a))
+      p.circle(x, y, 2)
     }
   }
   p.draw = function () {
