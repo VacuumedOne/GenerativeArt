@@ -15,15 +15,17 @@ const sketch = (p) => {
     let lastx = -800
     let lasty = -800
     let y = 50
+    let yNoise = p.random(10)
     let border_x = 20
     let border_y = 10
     for (let x = border_x; x <= width - border_x; x += step) {
-      y = border_y + p.random(height - 2*border_y)
+      y = border_y + p.noise(yNoise) * (height - 2*border_y)
       if (lastx > -800) {
         p.line(x, y, lastx, lasty)
       }
       lastx = x
       lasty = y
+      yNoise += 0.1
     }
   }
   p.draw = function () {
