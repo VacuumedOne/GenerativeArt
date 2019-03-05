@@ -4,23 +4,26 @@ const sketch = (p) => {
   p.setup = function () {
     //canvasのセットアップ
     const width = 800
-    const height = 800
+    const height = 200
     p.createCanvas(width, height)
     p.background(150)
     p.stroke(100)
     p.fill(200)
     
     //オブジェクトのセットアップ
-    let xStart = Math.floor(Math.random()*10)
-    let yNoise = Math.floor(Math.random()*10)
-    p.translate(width/2, height/2)
-    for (let y = -height/8; y <= height/8; y += 3) {
-      yNoise += 0.02
-      let xNoise = xStart
-      for (let x = -width/8; x <= width/8; x += 3) {
-        xNoise += 0.02
-        drawPoint(p, x, y, p.noise(xNoise, yNoise))
+    let step = 10
+    let lastx = -800
+    let lasty = -800
+    let y = 50
+    let border_x = 20
+    let border_y = 10
+    for (let x = border_x; x <= width - border_x; x += step) {
+      y = border_y + p.random(height - 2*border_y)
+      if (lastx > -800) {
+        p.line(x, y, lastx, lasty)
       }
+      lastx = x
+      lasty = y
     }
   }
   p.draw = function () {
@@ -29,11 +32,3 @@ const sketch = (p) => {
 }
 
 new p5(sketch, document.body)
-
-function drawPoint(p, x, y, noiseFactor) {
-  p.push()
-  p.translate(x * noiseFactor * 4, y * noiseFactor * 4)
-  let edgeSize = noiseFactor * 26
-  p.ellipse(0, 0, edgeSize, edgeSize)
-  p.pop()
-}
