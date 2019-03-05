@@ -15,10 +15,12 @@ const sketch = (p) => {
     let center_y = height/2
     let step = 1
     let r = 300
-    for (let a = 0; a < 360; a += step) {
+    let rap = 8
+    for (let a = 0; a < 360*rap; a += step) {
       let x = center_x + r * p.cos(p.radians(a))
       let y = center_y + r * p.sin(p.radians(a))
       p.circle(x, y, 2)
+      r -= 0.1
     }
   }
   p.draw = function () {
