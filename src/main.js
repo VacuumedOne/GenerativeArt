@@ -3,8 +3,8 @@ import p5 from 'p5'
 const sketch = (p) => {
   p.setup = function () {
     //canvasのセットアップ
-    const width = 1000
-    const height = 1000
+    const width = 800
+    const height = 800
     p.createCanvas(width, height)
     p.background(150)
     p.stroke(100)
