@@ -20,7 +20,7 @@ const sketch = (p) => {
     let border_y = 10
     for (let x = border_x; x <= width - border_x; x += step) {
       let rad = p.radians(angle)
-      y = height/2 + p.sin(rad) * (height - 2*border_y)/2
+      y = height/2 + (p.pow(p.sin(rad), 3)) * (height - 2*border_y)/2
       if (last_x > -800) {
         p.line(x, y, last_x, last_y)
       }
